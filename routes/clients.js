@@ -38,5 +38,23 @@ router.route("/:clientID")
             }
         })
     })
+    .get(function (request, response) {
+        Client.findById(request.params.clientID, function (error, clientData) {
+            if (error) {
+                response.status(400).send(error);
+            } else {
+                response.send(clientData);
+            }
+        })
+    })
+    .put(function (request, response) {
+       Client.findByIdAndUpdate(request.body._id, { $set : request.body}, {new: true}, function (error) {
+           if (error) {
+               response.status(400).send(error);
+           } else {
+               response.send("Client Updated");
+           }
+       })
+    })
 
 module.exports = router;

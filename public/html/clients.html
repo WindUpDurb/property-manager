@@ -11,7 +11,8 @@
             </div>
             <div class="row-content">
                 <div style="float: right">
-                    <a ng-click="removeClient(client)"><i class="material-icons">delete</i></a>
+                    <a ui-sref="clients" ng-click="removeClient(client)"><i class="material-icons">delete</i></a>
+                    <a ng-href="/#/editClient/{{client._id}}"><i class="material-icons">create</i></a>
                 </div>
                 <h4 class="list-group-item-heading">{{client.name || "Did you forget to enter a name?"}}</h4>
 

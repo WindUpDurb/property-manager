@@ -38,6 +38,25 @@ router.route("/:propertyID")
             }
         })
     })
+    .get(function (request, response) {
+        Property.findById(request.params.propertyID, function (error, propertyData) {
+            if (error) {
+                response.status(400).send(error);
+            } else {
+                response.send(propertyData);
+            }
+        })
+    })
+    .put(function (request, response) {
+        console.log("edits: ", request.body)
+        Property.findByIdAndUpdate(request.body._id, { $set : request.body}, {new: true}, function (error) {
+            if (error) {
+                response.status(400).send(error);
+            } else {
+                response.send("Property Updated");
+            }
+        })
+    })
 
 
 module.exports = router;

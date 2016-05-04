@@ -8,6 +8,10 @@ app.service("PropertyServices", function ($http) {
         return $http.get("/api/properties")
     };
 
+    this.getIndividualProperty = function (propertyID) {
+        return $http.get(`/api/properties/${propertyID}`)
+    };
+
     this.addNewProperty = function (propertyToAdd) {
       return $http({
           method: "POST",
@@ -24,6 +28,14 @@ app.service("PropertyServices", function ($http) {
       })
     };
 
+    this.editProperty = function (propertyEdits) {
+        return $http({
+            method : "PUT",
+            data : propertyEdits,
+            url : `/api/properties/${propertyEdits._id}`
+        })
+    };
+
 });
 
 
@@ -31,6 +43,10 @@ app.service("ClientServices", function ($http) {
 
     this.getClientList = function () {
         return $http.get("/api/clients")
+    };
+
+    this.getIndividualClient = function (clientID) {
+        return $http.get(`/api/clients/${clientID}`)
     };
 
     this.addNewClient = function (clientToAdd) {
@@ -47,6 +63,14 @@ app.service("ClientServices", function ($http) {
             data : clientToRemove,
             url : `/api/clients/${clientToRemove}`
         })
+    };
+
+    this.editClient = function (clientEdits) {
+      return $http({
+          method : "PUT",
+          data : clientEdits,
+          url : `/api/clients/${clientEdits._id}`
+      })
     };
 
 });

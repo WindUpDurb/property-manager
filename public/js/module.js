@@ -20,6 +20,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl : "/html/addNewProperty.html",
             controller : "newPropertyController"
         })
+        .state("editProperty", {
+            url : "/editProperty/:propertyID",
+            templateUrl : "html/editProperty.html",
+            controller : "editPropertyController"
+        })
         .state("clients", {
             url : "/clients",
             templateUrl : "/html/clients.html",
@@ -29,6 +34,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             url : "/addClient",
             templateUrl : "/html/addNewClient.html",
             controller : "newClientController"
+        })
+        .state("editClient", {
+            url : "/editClient/:clientID",
+            templateUrl : "/html/editClient.html",
+            controller : "editClientController"
         })
 
 

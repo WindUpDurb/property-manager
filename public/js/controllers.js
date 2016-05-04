@@ -35,7 +35,7 @@ app.controller("propertiesController", function ($scope, $state, PropertyService
 
 });
 
-app.controller("newPropertyController", function ($scope, PropertyServices) {
+app.controller("newPropertyController", function ($scope, $state, PropertyServices) {
     console.log("new Property");
 
      $scope.addNewProperty = function (propertyData) {
@@ -43,6 +43,8 @@ app.controller("newPropertyController", function ($scope, PropertyServices) {
             .then(function (response) {
                 alert("Property Has Been Add, You Baller.");
                 $scope.newProperty = null;
+                $state.go("properties");
+
             })
             .catch(function (error) {
                 console.log("Error: ", error);
@@ -52,6 +54,31 @@ app.controller("newPropertyController", function ($scope, PropertyServices) {
     
 });
 
+
+app.controller("editPropertyController", function ($scope, $state, $stateParams, PropertyServices) {
+    console.log("Edit Client Controller");
+
+    PropertyServices.getIndividualProperty($stateParams.propertyID)
+        .then(function (response) {
+            console.log(response.data);
+            $scope.property = response.data;
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
+
+    $scope.savePropertyEdits = function (propertyEdits) {
+        PropertyServices.editProperty(propertyEdits)
+            .then(function (response) {
+                alert("Property Has Been Updated");
+                $state.go("properties")
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+    };
+
+});
 
 app.controller("clientsController", function ($scope, $state, ClientServices) {
     console.log("Clients Controller");
@@ -78,7 +105,7 @@ app.controller("clientsController", function ($scope, $state, ClientServices) {
     };
 });
 
-app.controller("newClientController", function ($scope, ClientServices) {
+app.controller("newClientController", function ($scope, $state, ClientServices) {
     console.log("New Client Controller");
 
     $scope.addNewClient = function (clientData) {
@@ -87,6 +114,7 @@ app.controller("newClientController", function ($scope, ClientServices) {
             .then(function (response) {
                 alert("New Client Has Been Added, You Baller.");
                 $scope.newClient = null;
+                $state.go("clients")
             })
             .catch(function (error) {
                 console.log("Error: ", error);
@@ -95,3 +123,29 @@ app.controller("newClientController", function ($scope, ClientServices) {
     };
 
 });
+
+
+app.controller("editClientController", function ($scope, $state, $stateParams, ClientServices) {
+    console.log("Edit Client Controller");
+
+    ClientServices.getIndividualClient($stateParams.clientID)
+        .then(function (response) {
+            console.log(response.data);
+            $scope.client = response.data;
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        })
+    
+    $scope.saveClientEdits = function (clientEdits) {
+     ClientServices.editClient(clientEdits)
+          .then(function (response) {
+              alert("Client Has Been Updated");
+              $state.go("clients")
+          })
+         .catch(function (error) {
+             console.log("Error: ", error);
+         })
+    };
+    
+})
