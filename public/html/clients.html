@@ -1,0 +1,29 @@
+<div class="container">
+    <a style="float : right" ng-href="/#/addClient" class="btn btn-info btn-fab"><i class="material-icons">add</i></a>
+</div>
+
+<div class="jumbotron">
+
+    <div class="list-group" ng-repeat="client in listOfClients">
+        <div class="list-group-item">
+            <div class="row-picture">
+                <img class="circle" src="https://analogerr.com/user_profile_pic/default.jpg" alt="icon">
+            </div>
+            <div class="row-content">
+                <div style="float: right">
+                    <a ng-click="removeClient(client)"><i class="material-icons">delete</i></a>
+                </div>
+                <h4 class="list-group-item-heading">{{client.name || "Did you forget to enter a name?"}}</h4>
+
+                   <p class="list-group-item-text">Tenant at: {{client.propertyAt}}</p>
+                   <p class="list-group-item-text">Email: {{client.email}}</p>
+                   <p class="list-group-item-text">Phone Number: {{client.phoneNumber}}</p>
+
+            </div>
+            <div class="list-group-separator"></div>
+        </div>
+
+
+    </div>
+
+</div>

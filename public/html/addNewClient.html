@@ -1,0 +1,37 @@
+<div class="jumbotron">
+
+    <form class="form-horizontal" ng-submit="addNewClient(newClient)">
+        <fieldset>
+
+            <div class="form-group label-floating">
+                <label class="control-label">Client's Name</label>
+                <input required class="form-control" ng-model="newClient.name"  type="text" placeholder="What's the client's name?">
+            </div>
+
+            <div class="form-group label-floating">
+                <label class="control-label">Client's Residence</label>
+                <input required class="form-control" ng-model="newClient.propertyAt" type="text" placeholder="In which property does the client reside in?">
+            </div>
+
+
+            <div class="form-group label-floating">
+                <label class="control-label">Client's Email Address</label>
+                <input ng-model="newClient.email" class="form-control" type="email">
+            </div>
+
+            <div class="form-group label-floating">
+                <label class="control-label">Phone Number</label>
+                <input ng-model="newClient.phoneNumber" class="form-control" type="tel">
+            </div>
+
+
+            <div>
+                <button type="submit" class="btn btn-success" >Save</button>
+                <button class="btn btn-danger">Cancel</button>
+
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>

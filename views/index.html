@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Property Manager</title>
+
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/ripples.min.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/css/bootstrap-material-design.min.css">
+    <script src="/bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <script src="/bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <script src="/js/module.js"></script>
+    <script src="/js/services.js"></script>
+    <script src="/js/controllers.js"></script>
+
+
 </head>
-<body>
-    <h1>Property</h1>
+<body ng-app="propertyManagerApp">
+
+<div class="navbar navbar-warning">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a style="color : #303F9F" class="navbar-brand" ng-href="/">WindUpDurb Property Manager</a>
+            <a class="navbar-brand navbar-right" ng-href="/#/clients">Clients</a>
+            <a class="navbar-brand" ng-href="/#/properties">Properties</a>
+        </div>
+    </div>
+</div>
+
+<br>
+
+<div class="container">
+    <ui-view>
+
+    </ui-view>
+</div>
+
 
 </body>
 </html>

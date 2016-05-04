@@ -1,0 +1,20 @@
+<div class="container">
+    <a style="float : right" ng-href="/#/addProperty" class="btn btn-info btn-fab"><i class="material-icons">add</i></a>
+</div>
+
+
+<div class="panel panel-default" ng-repeat="property in listOfProperties">
+    <div class="panel-heading">
+        <i class="material-icons">home</i>
+        {{property.propertyAddress}}
+        <div style="float: right">
+            <a ng-click="removeProperty(property)"><i class="material-icons">delete</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <p>Bedrooms: {{property.bedrooms}}</p>
+        <p>Bathrooms: {{property.bathrooms}}</p>
+        <p>Current Rent: {{property.rent || "N/A"}}</p>
+        <p>Current Utilities: {{property.utilities || "N/A"}}</p>
+    </div>
+</div>
