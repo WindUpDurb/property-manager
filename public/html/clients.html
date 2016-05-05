@@ -5,10 +5,15 @@
 <div class="jumbotron">
 
     <div class="list-group" ng-repeat="client in listOfClients">
+        <div style="float: left" ng-if="client.tenantAt">
+            <a ng-href="/#/propertyManagement/{{client.tenantAt}}"><i class="material-icons">home</i>
+            </a>
+        </div>
         <div class="list-group-item">
             <div class="row-picture">
                 <img class="circle" src="https://analogerr.com/user_profile_pic/default.jpg" alt="icon">
             </div>
+
             <div class="row-content">
                 <div style="float: right">
                     <a ui-sref="clients" ng-click="removeClient(client)"><i class="material-icons">delete</i></a>
@@ -16,9 +21,12 @@
                 </div>
                 <h4 class="list-group-item-heading">{{client.name || "Did you forget to enter a name?"}}</h4>
 
-                   <p class="list-group-item-text">Tenant at: {{client.propertyAt}}</p>
-                   <p class="list-group-item-text">Email: {{client.email}}</p>
-                   <p class="list-group-item-text">Phone Number: {{client.phoneNumber}}</p>
+                   <p class="list-group-item-text">Email: {{client.email}}
+                       <br>Phone Number: {{client.phoneNumber}}
+                   </p>
+
+
+
 
             </div>
             <div class="list-group-separator"></div>

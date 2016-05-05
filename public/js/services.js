@@ -40,6 +40,10 @@ app.service("PropertyServices", function ($http) {
       return $http.get(`/api/properties/${propertyID}/clients`)
     };
 
+    this.moveInClient = function (propertyID, clientID) {
+      return $http.post(`/api/properties/${propertyID}/moveInClient/${clientID}`)
+    };
+
 });
 
 

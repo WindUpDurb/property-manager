@@ -108,6 +108,16 @@ app.controller("propertyManagementController", function ($scope, $state, Propert
         .catch(function (error) {
             console.log("Error: ", error);
         });
+
+    $scope.clientMoveIn = function (clientID) {
+        PropertyServices.moveInClient($state.params.propertyID, clientID)
+            .then(function (response) {
+                alert("Money in the Bank! $$$$");
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+    };
 });
 
 app.controller("clientsController", function ($scope, $state, ClientServices) {

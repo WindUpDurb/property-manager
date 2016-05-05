@@ -46,7 +46,7 @@ router.route("/:propertyID")
             } else {
                 response.send(propertyData);
             }
-        })
+        }).populate("tenants")
     })
     .put(function (request, response) {
         console.log("edits: ", request.body)
@@ -71,5 +71,18 @@ router.route("/:propertyID/clients")
             })
 
     })
+
+router.route("/:propertyID/moveInClient/:clientID")
+    .post(function (request, response) {
+        var propertyID = request.params.propertyID;
+        var clientID = request.params.clientID;
+
+        Property.moveInClient(propertyID, clientID, function (error) {
+            if (error) response.status(400).send(error);
+            response.status("Client Has Moved In");
+        })
+
+    })
+
 
 module.exports = router;

@@ -27,8 +27,28 @@
         </div>
 
         <div>
-            <h3>Current Tenants: {{property.tenants}}</h3>
+            <h3>Current Tenants:</h3>
+
+            <div class="list-group">
+                <div class="list-group-item" ng-repeat="tenant in property.tenants">
+                    <div class="row-picture">
+                        <img class="circle" src="https://dabble-production-db-herokuapp-com.global.ssl.fastly.net/assets/fallback/default_user_photo-d31b851edf55356d11069c446ee3bfdc.png" alt="icon">
+                    </div>
+                    <div class="row-content">
+                        <div style="float: right">
+                            <a ng-href="/#/clients"><i class="material-icons">contacts</i></a>
+                        </div>
+                        <h4 class="list-group-item-heading">{{tenant.name}}</h4>
+
+                        <p class="list-group-item-text">Phone Number: {{tenant.phoneNumber}}</p>
+                    </div>
+                    <div class="list-group-separator"></div>
+                </div>
+            </div>
+
         </div>
+
+        <br>
 
         <div>
             <h3>Available Clients to Move In: </h3>
@@ -47,7 +67,7 @@
                     <td>{{client.name}}</td>
                     <td>{{client.phoneNumber}}</td>
                     <td>{{client.email}}</td>
-                    <td><i class="material-icons">next_week</i></td>
+                    <td><a href=""><i class="material-icons" ng-click="clientMoveIn(client._id)">next_week</i></a></td>
                 </tr>
                 </tbody>
             </table>
