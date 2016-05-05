@@ -25,6 +25,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl : "html/editProperty.html",
             controller : "editPropertyController"
         })
+        .state("propertyManagement", {
+            url : "/propertyManagement/:propertyID",
+            templateUrl : "html/propertyManagement.html",
+            controller : "propertyManagementController"
+        })
         .state("clients", {
             url : "/clients",
             templateUrl : "/html/clients.html",

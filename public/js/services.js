@@ -36,6 +36,10 @@ app.service("PropertyServices", function ($http) {
         })
     };
 
+    this.getPotentialClients = function (propertyID) {
+      return $http.get(`/api/properties/${propertyID}/clients`)
+    };
+
 });
 
 

@@ -4,6 +4,7 @@ var express = require("express");
 var router = express.Router();
 
 var Property = require("../models/property");
+var Client = require("../models/client");
 
 router.route("/")
     .get(function (request, response) {
@@ -58,5 +59,17 @@ router.route("/:propertyID")
         })
     })
 
+router.route("/:propertyID/clients")
+    .get(function (request, response) {
+        var propertyID = request.params.propertyID;
+        Client
+            .find({
+                tenantAt : { $ne : propertyID }
+            }, function (error, clientData) {
+                if (error) response.status(400).send(error);
+                response.send(clientData);
+            })
+
+    })
 
 module.exports = router;

@@ -39,7 +39,14 @@ app.controller("newPropertyController", function ($scope, $state, PropertyServic
     console.log("new Property");
 
      $scope.addNewProperty = function (propertyData) {
-        PropertyServices.addNewProperty(propertyData)
+         var dataToSend = angular.copy(propertyData);
+         var maxTenants = [];
+         for (var i = 0; i < propertyData.maxTenants; i++) {
+             maxTenants.push(`tenant${i}`);
+         }
+         dataToSend.maxTenants = maxTenants;
+
+        PropertyServices.addNewProperty(dataToSend)
             .then(function (response) {
                 alert("Property Has Been Add, You Baller.");
                 $scope.newProperty = null;
@@ -61,6 +68,7 @@ app.controller("editPropertyController", function ($scope, $state, $stateParams,
     PropertyServices.getIndividualProperty($stateParams.propertyID)
         .then(function (response) {
             console.log(response.data);
+            response.data.maxTenants = response.data.maxTenants.length;
             $scope.property = response.data;
         })
         .catch(function (error) {
@@ -68,7 +76,13 @@ app.controller("editPropertyController", function ($scope, $state, $stateParams,
         });
 
     $scope.savePropertyEdits = function (propertyEdits) {
-        PropertyServices.editProperty(propertyEdits)
+        var dataToSend = angular.copy(propertyEdits);
+        var maxTenants = [];
+        for (var i = 0; i < propertyEdits.maxTenants; i++) {
+            maxTenants.push(`tenant${i}`);
+        }
+        dataToSend.maxTenants = maxTenants;
+        PropertyServices.editProperty(dataToSend)
             .then(function (response) {
                 alert("Property Has Been Updated");
                 $state.go("properties")
@@ -78,6 +92,22 @@ app.controller("editPropertyController", function ($scope, $state, $stateParams,
             })
     };
 
+});
+
+app.controller("propertyManagementController", function ($scope, $state, PropertyServices) {
+   console.log("Property Management Controller");
+
+    PropertyServices.getIndividualProperty($state.params.propertyID)
+        .then(function (response) {
+            $scope.property = response.data;
+            return PropertyServices.getPotentialClients($state.params.propertyID)
+        })
+        .then(function (response) {
+            $scope.potentialClientsList = response.data;
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        });
 });
 
 app.controller("clientsController", function ($scope, $state, ClientServices) {

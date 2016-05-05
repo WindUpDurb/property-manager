@@ -5,7 +5,7 @@
 
 <div class="panel panel-default" ng-repeat="property in listOfProperties">
     <div class="panel-heading">
-        <i class="material-icons">home</i>
+        <a ng-href="/#/propertyManagement/{{property._id}}"><i class="material-icons">home</i></a>
         {{property.propertyAddress}}
         <div style="float: right">
             <a ng-click="removeProperty(property)"><i class="material-icons">delete</i></a>
@@ -15,7 +15,9 @@
     <div class="panel-body">
         <p>Bedrooms: {{property.bedrooms}}</p>
         <p>Bathrooms: {{property.bathrooms}}</p>
-        <p>Current Rent: {{property.rent || "N/A"}}</p>
-        <p>Current Utilities: {{property.utilities || "N/A"}}</p>
+        <p>
+            Maximum Tenants :
+            <i class="material-icons" ng-repeat="tenant in property.maxTenants">face</i>
+        </p>
     </div>
 </div>

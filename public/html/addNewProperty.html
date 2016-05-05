@@ -28,15 +28,10 @@
                 <input ng-model="newProperty.bathrooms" class="form-control" id="focusedInput2" type="number" required>
             </div>
 
-
-
-            <div class="form-group">
-                <label class="col-lg-2 control-label">Check if the property has tenants</label>
-                <div class="col-lg-10">
-                        <input ng-model="newProperty.occupationStatus" value="true" type="checkbox">
-                </div>
+            <div class="form-group label-floating">
+                <label class="control-label" for="focusedInput2">Maximum Amount of Tenants</label>
+                <input ng-model="newProperty.maxTenants" class="form-control" id="focusedInput2" type="number" required>
             </div>
-
 
             <div>
                 <button type="submit" class="btn btn-success" >Save</button>

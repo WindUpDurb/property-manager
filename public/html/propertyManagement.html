@@ -1,0 +1,59 @@
+<div class="jumbotron">
+
+    <div class="well">
+        <h2 class="text-center"><i class="material-icons md-48">home</i>{{property.propertyAddress}}</h2>
+    </div>
+
+    <div class="text-center">
+        <div>
+            <h3>Monthly Rent : {{property.rent}}</h3>
+        </div>
+
+        <div>
+            <h3>Monthly Utilities Cost, if Applicable: {{property.utilities || "N/A"}}</h3>
+        </div>
+
+        <div>
+            <h3>Bedrooms: {{property.bedrooms}}</h3>
+        </div>
+
+        <div>
+            <h3>Bathrooms: {{property.bathrooms}}</h3>
+        </div>
+
+        <div>
+            <h3>Maximum Tenants: <i class="material-icons" ng-repeat="tenant in property.maxTenants">face</i>
+            </h3>
+        </div>
+
+        <div>
+            <h3>Current Tenants: {{property.tenants}}</h3>
+        </div>
+
+        <div>
+            <h3>Available Clients to Move In: </h3>
+            <br>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone Number</th>
+                    <th>Email Address</th>
+                    <th>Move In?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="client in potentialClientsList">
+                    <td>{{client.name}}</td>
+                    <td>{{client.phoneNumber}}</td>
+                    <td>{{client.email}}</td>
+                    <td><i class="material-icons">next_week</i></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>
