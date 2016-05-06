@@ -209,6 +209,10 @@ app.controller("overviewController", function ($scope, ClientServices, PropertyS
     PropertyServices.getPropertyList()
         .then(function (response) {
             $scope.listOfProperties = response.data;
+            return ClientServices.getClientList()
+        })
+        .then(function (response) {
+            $scope.listOfClients = response.data;
         })
         .catch(function (error) {
             console.log("Error: ", error);

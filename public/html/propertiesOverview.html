@@ -4,12 +4,13 @@
     <h4>Total Number of Properties: </h4>
     <div>
         <i class="material-icons" ng-repeat="property in listOfProperties">home</i>
-
+    </div>
+    <br>
+    <h4>Total Number of Tenant-Occupied Properties: </h4>
+    <div ng-repeat="tenant in listOfClients" ng-if="tenant.tenantAt">
+        <i class="material-icons">home</i>
     </div>
 </div>
 
-<div class="jumbotron">
-    <h3 class="text-center">Clients and Tenants</h3>
 
-</div>
 
