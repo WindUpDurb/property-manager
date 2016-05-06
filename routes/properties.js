@@ -64,7 +64,10 @@ router.route("/:propertyID/clients")
         var propertyID = request.params.propertyID;
         Client
             .find({
-                tenantAt : { $ne : propertyID }
+                tenantAt : { $ne : propertyID
+                    //add another filter
+                    //for other tenants
+                }
             }, function (error, clientData) {
                 if (error) response.status(400).send(error);
                 response.send(clientData);
@@ -79,10 +82,23 @@ router.route("/:propertyID/moveInClient/:clientID")
 
         Property.moveInClient(propertyID, clientID, function (error) {
             if (error) response.status(400).send(error);
-            response.status("Client Has Moved In");
+            response.send("Client Has Moved In");
         })
 
     })
+
+router.route("/:propertyID/evictClient/:clientID")
+    .post(function (request, response) {
+        var propertyID = request.params.propertyID;
+        var clientID = request.params.clientID;
+        
+        Property.evictTenant(propertyID, clientID, function (error) {
+            if (error) response.status(400).send(error);
+            response.send("Client Has Been Evicted");
+        });
+        
+    })
+
 
 
 module.exports = router;

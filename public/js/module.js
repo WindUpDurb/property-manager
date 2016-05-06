@@ -45,6 +45,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl : "/html/editClient.html",
             controller : "editClientController"
         })
+        .state("overview", {
+            url : "/overview",
+            templateUrl : "/html/propertiesOverview.html",
+            controller : "overviewController"
+        })
 
 
     $urlRouterProvider.otherwise("/");

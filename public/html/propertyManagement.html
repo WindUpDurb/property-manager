@@ -6,11 +6,11 @@
 
     <div class="text-center">
         <div>
-            <h3>Monthly Rent : {{property.rent}}</h3>
+            <h3>Monthly Rent : {{property.rent | currency}}</h3>
         </div>
 
         <div>
-            <h3>Monthly Utilities Cost, if Applicable: {{property.utilities || "N/A"}}</h3>
+            <h3>Monthly Utilities Cost, if Applicable: {{property.utilities || "N/A" | currency}}</h3>
         </div>
 
         <div>
@@ -41,6 +41,9 @@
                         <h4 class="list-group-item-heading">{{tenant.name}}</h4>
 
                         <p class="list-group-item-text">Phone Number: {{tenant.phoneNumber}}</p>
+                        <div style="float: right">
+                            <button ng-click="evictTenant(tenant)"> <i class="material-icons text-danger">next_week</i> </button>
+                        </div>
                     </div>
                     <div class="list-group-separator"></div>
                 </div>
@@ -67,7 +70,7 @@
                     <td>{{client.name}}</td>
                     <td>{{client.phoneNumber}}</td>
                     <td>{{client.email}}</td>
-                    <td><a href=""><i class="material-icons" ng-click="clientMoveIn(client._id)">next_week</i></a></td>
+                    <td><a href=""><i class="material-icons" ng-click="clientMoveIn(client._id)">assignment_return</i></a></td>
                 </tr>
                 </tbody>
             </table>

@@ -100,10 +100,12 @@ app.controller("propertyManagementController", function ($scope, $state, Propert
     PropertyServices.getIndividualProperty($state.params.propertyID)
         .then(function (response) {
             $scope.property = response.data;
+            console.log("Property data: ", $scope.property)
             return PropertyServices.getPotentialClients($state.params.propertyID)
         })
         .then(function (response) {
             $scope.potentialClientsList = response.data;
+            console.log($scope.potentialClientsList)
         })
         .catch(function (error) {
             console.log("Error: ", error);
@@ -113,6 +115,17 @@ app.controller("propertyManagementController", function ($scope, $state, Propert
         PropertyServices.moveInClient($state.params.propertyID, clientID)
             .then(function (response) {
                 alert("Money in the Bank! $$$$");
+            })
+            .catch(function (error) {
+                console.log("Error: ", error);
+            })
+    };
+    
+    $scope.evictTenant = function(tenant) {
+        PropertyServices.tenantEviction($state.params.propertyID, tenant._id)
+            .then(function (response) {
+                console.log(response.body)
+                alert("Received")
             })
             .catch(function (error) {
                 console.log("Error: ", error);
@@ -149,7 +162,7 @@ app.controller("newClientController", function ($scope, $state, ClientServices) 
     console.log("New Client Controller");
 
     $scope.addNewClient = function (clientData) {
-        console.log(clientData)
+        console.log(clientData);
         ClientServices.addNewClient(clientData)
             .then(function (response) {
                 alert("New Client Has Been Added, You Baller.");
@@ -188,4 +201,25 @@ app.controller("editClientController", function ($scope, $state, $stateParams, C
          })
     };
     
-})
+});
+
+
+app.controller("overviewController", function ($scope, ClientServices, PropertyServices) {
+   console.log("Overview Controller");
+    PropertyServices.getPropertyList()
+        .then(function (response) {
+            $scope.listOfProperties = response.data;
+        })
+        .catch(function (error) {
+            console.log("Error: ", error);
+        })
+    
+    
+});
+
+
+
+
+
+
+

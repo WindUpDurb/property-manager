@@ -43,6 +43,10 @@ app.service("PropertyServices", function ($http) {
     this.moveInClient = function (propertyID, clientID) {
       return $http.post(`/api/properties/${propertyID}/moveInClient/${clientID}`)
     };
+    
+    this.tenantEviction = function (propertyID, clientID) {
+      return $http.post(`/api/properties/${propertyID}/evictClient/${clientID}`);  
+    };
 
 });
 
